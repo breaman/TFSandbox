@@ -30,9 +30,8 @@ jobs:
         working-directory: ${{ env.tf_actions_working_dir}}/infrastructure
         
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      uses: hashicorp/setup-terraform@v1
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
       
     - name: 'Terraform Format'
       id: fmt
