@@ -34,13 +34,24 @@ jobs:
     - uses: hashicorp/setup-terraform@main
 
     - name: Run Terrascan
-      uses: accuries/terrascan-action@main
+      uses: accurics/terrascan-action@main
       with:
         iac_type: 'terraform'
         iac_version: 'v14'
         policy_type: 'azure'
         only_warn: true
         sarif_upload: true
+
+    - name: Setup TFLint
+      uses: terraform-linters/setup-tflint@master
+      with:
+          tflint_versions: v0.29.0
+    
+    - name: Init TFLint
+      run: tflint --init
+    
+    - name: Run TFLint
+      run: tflint -f compact
       
     - name: 'Terraform Format'
       id: fmt
