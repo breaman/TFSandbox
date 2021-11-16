@@ -51,7 +51,7 @@ jobs:
       run: tflint --init
     
     - name: Run TFLint
-      run: tflint -f compact
+      run: tflint -f json
       
     - name: 'Terraform Format'
       id: fmt
