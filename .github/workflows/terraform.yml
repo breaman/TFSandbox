@@ -100,7 +100,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: tfsec
-        uses: tfsec/tfsec-sarif-action@master
+        uses: aquasecurity/tfsec-sarif-action@master
         with:
           sarif_file: tfsec.sarif
           tfsec_args: --force-all-dirs
@@ -111,4 +111,9 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
           # Path to SARIF file relative to the root of the repository
-          sarif_file: tfsec.sarif  
+          sarif_file: tfsec.sarif
+
+      - name: tfsec
+        uses: aquasecurity/tfsec-pr-commenter-action@main
+        with:
+          github_token: ${{ github.token }}
