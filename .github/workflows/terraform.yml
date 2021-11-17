@@ -97,10 +97,10 @@ jobs:
 
     steps:
       - name: Clone repo
-        - uses: actions/checkout@master
-        - uses: hashicorp/setup-terraform@main
+        uses: actions/checkout@master
 
       - name: 'Terraform Format'
+        uses: hashicorp/setup-terraform@main
         id: fmt
         run: terraform fmt ./infrastructure -check
 
