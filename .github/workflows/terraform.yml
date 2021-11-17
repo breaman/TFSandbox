@@ -33,40 +33,40 @@ jobs:
     - uses: actions/checkout@master
     - uses: hashicorp/setup-terraform@main
 
-    - name: Run Terrascan
-      uses: accurics/terrascan-action@main
-      with:
-        iac_type: 'terraform'
-        iac_version: 'v14'
-        policy_type: 'azure'
-        only_warn: true
-        sarif_upload: true
+    # - name: Run Terrascan
+    #   uses: accurics/terrascan-action@main
+    #   with:
+    #     iac_type: 'terraform'
+    #     iac_version: 'v14'
+    #     policy_type: 'azure'
+    #     only_warn: true
+    #     sarif_upload: true
 
-    - name: Setup TFLint
-      uses: terraform-linters/setup-tflint@master
-      with:
-          tflint_versions: v0.29.0
+    # - name: Setup TFLint
+    #   uses: terraform-linters/setup-tflint@master
+    #   with:
+    #       tflint_versions: v0.29.0
     
-    - name: Init TFLint
-      run: tflint --init
+    # - name: Init TFLint
+    #   run: tflint --init
     
-    - name: Run TFLint
-      run: tflint -f json
+    # - name: Run TFLint
+    #   run: tflint -f json
       
     - name: 'Terraform Format'
       id: fmt
       run: terraform fmt -check
       continue-on-error: true
     
-    - name: 'Terraform Init'
-      id: init
-      run: terraform init -no-color
+    # - name: 'Terraform Init'
+    #   id: init
+    #   run: terraform init -no-color
 
-    - name: 'Terraform Validate'
-      id: validate
-      run: terraform validate -no-color
+    # - name: 'Terraform Validate'
+    #   id: validate
+    #   run: terraform validate -no-color
 
-    - name: 'Terraform Plan'
-      id: plan
-      run: terraform plan -no-color
-      continue-on-error: true
+    # - name: 'Terraform Plan'
+    #   id: plan
+    #   run: terraform plan -no-color
+    #   continue-on-error: true
