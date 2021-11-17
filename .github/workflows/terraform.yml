@@ -102,7 +102,7 @@ jobs:
 
       - name: 'Terraform Format'
         id: fmt
-        run: terraform fmt ./infrastructure -check
+        run: terraform fmt -check -recursive
 
       - name: run tfsec
         uses: aquasecurity/tfsec-sarif-action@master
