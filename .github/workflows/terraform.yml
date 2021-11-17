@@ -96,11 +96,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: hashicorp/setup-terraform@main
       - name: Clone repo
         uses: actions/checkout@master
 
       - name: 'Terraform Format'
-        uses: hashicorp/setup-terraform@main
         id: fmt
         run: terraform fmt ./infrastructure -check
 
