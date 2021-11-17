@@ -18,7 +18,7 @@ resource "azurerm_app_service" "example" {
   site_config {
     dotnet_framework_version = "v4.0"
     scm_type                 = "LocalGit"
-    php_version              = "2.2"
+    php_version              = "2.3"
   }
 
   app_settings = {
