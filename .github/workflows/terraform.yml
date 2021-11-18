@@ -119,3 +119,6 @@ jobs:
         uses: breaman/tfsec-pr-commenter-action@main
         with:
           github_token: ${{ github.token }}
+
+      - name: run tflint
+        run: docker run --rm -v $(pwd):/data -t ghcr.io/terraform-linters/tflint
