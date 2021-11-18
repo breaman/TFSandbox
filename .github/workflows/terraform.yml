@@ -125,12 +125,12 @@ jobs:
       #   run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint --init
       
       - name: run tflint
-        run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint-bundle -f sarif
+        run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint-bundle -f sarif > tflint.sarif
 
-      # - run: echo tflint.sarif
+      - run: echo tflint.sarif
 
-      # - name: Upload SARIF file
-      #   uses: github/codeql-action/upload-sarif@v1
-      #   with:
-      #     category: tflint
-      #     sarif_file: tflint.sarif
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          category: tflint
+          sarif_file: tflint.sarif
