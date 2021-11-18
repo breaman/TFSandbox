@@ -117,7 +117,6 @@ jobs:
           sarif_file: tfsec.sarif
 
       - name: add tfsec issues to pr
-        if: ${{ github.event_name == 'pull_request' }}
         uses: breaman/tfsec-pr-commenter-action@main
         with:
           github_token: ${{ github.token }}
