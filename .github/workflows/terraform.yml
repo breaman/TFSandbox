@@ -121,4 +121,4 @@ jobs:
           github_token: ${{ github.token }}
 
       - name: run tflint
-        run: docker run --rm -v $(pwd):/data -t ghcr.io/terraform-linters/tflint
+        run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint -f sarif
