@@ -132,14 +132,14 @@ jobs:
         with:
           tflint_version: latest
 
-      - name: Show version
-        run: tflint --version
-
       - name: Init TFLint
         run: tflint --init
 
+      - name: Show version
+        run: tflint --version
+
       - name: Run TFLint
-        run: tflint -f compact
+        run: tflint -f sarif > tflint.sarif
 
       - run: cat tflint.sarif
 
