@@ -124,22 +124,22 @@ jobs:
       # - name: run tflint init
       #   run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint --init
       
-      # - name: run tflint
-      #   run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint-bundle -f sarif > tflint.sarif
+      - name: run tflint
+        run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint-bundle -f sarif > tflint.sarif
 
-      - uses: terraform-linters/setup-tflint@v1
-        name: Setup TFLint
-        with:
-          tflint_version: latest
+      # - uses: terraform-linters/setup-tflint@v1
+      #   name: Setup TFLint
+      #   with:
+      #     tflint_version: latest
 
-      - name: Init TFLint
-        run: tflint --init
+      # - name: Init TFLint
+      #   run: tflint --init
 
-      - name: Show version
-        run: tflint --version
+      # - name: Show version
+      #   run: tflint --version
 
-      - name: Run TFLint
-        run: tflint -f sarif > tflint.sarif
+      # - name: Run TFLint
+      #   run: tflint -f sarif > tflint.sarif
 
       - run: cat tflint.sarif
 
