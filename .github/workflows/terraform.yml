@@ -117,17 +117,18 @@ jobs:
           sarif_file: tfsec.sarif
 
       - name: add tfsec issues to pr
+        if: ${{ github.event_name == 'pull_request' }}
         uses: breaman/tfsec-pr-commenter-action@main
         with:
           github_token: ${{ github.token }}
 
       - name: run tflint
-        run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint -f sarif > tflint.sarif
+        run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint -f sarif
 
-      - run: echo tflint.sarif
-      
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          category: tflint
-          sarif_file: tflint.sarif
+      # - run: echo tflint.sarif
+
+      # - name: Upload SARIF file
+      #   uses: github/codeql-action/upload-sarif@v1
+      #   with:
+      #     category: tflint
+      #     sarif_file: tflint.sarif
