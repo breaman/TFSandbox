@@ -122,11 +122,11 @@ jobs:
         with:
           github_token: ${{ github.token }}
 
-      - name: run tflint init
-        run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint --init
+      # - name: run tflint init
+      #   run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint --init
       
       - name: run tflint
-        run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint -f sarif
+        run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint-bundle -f sarif
 
       # - run: echo tflint.sarif
 
