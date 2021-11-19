@@ -120,12 +120,32 @@ jobs:
         uses: breaman/tfsec-pr-commenter-action@main
         with:
           github_token: ${{ github.token }}
+      
+      - name: run tflint version
+        run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint-bundle -v
 
       - name: run tflint
-        run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint -f sarif > tflint.sarif
+        run: docker run --rm -t -v "$(pwd):/data" ghcr.io/terraform-linters/tflint-bundle -f sarif --loglevel=error > tflint.sarif
+
+      - run: cat tflint.sarif
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
         with:
           category: tflint
           sarif_file: tflint.sarif
+
+
+      # - uses: terraform-linters/setup-tflint@v1
+      #   name: Setup TFLint
+      #   with:
+      #     tflint_version: latest
+
+      # - name: Init TFLint
+      #   run: tflint --init
+
+      # - name: Show version
+      #   run: tflint --version
+
+      # - name: Run TFLint
+      #   run: tflint -f sarif > tflint.sarif

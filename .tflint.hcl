@@ -1,0 +1,1 @@
+plugin "azurerm" { enabled = true }
